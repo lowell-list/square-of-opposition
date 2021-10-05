@@ -1,0 +1,19 @@
+{
+  "name": "square-of-opposition",
+  "version": "1.0.0",
+  "description": "Square of Opposition",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^4.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "go": "npx ts-node index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "prettier": {
+    "semi": false
+  }
+}

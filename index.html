@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Square of Opposition</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Square of opposition functions -->
+    <script src="square-of-opposition.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      /**
+       * React Components.
+       * -----------------------------------------------------------------------
+       */
+
+      /**
+       * Custom Input component.
+       */
+      const Input = (props) => {
+        const { label, value, setValue } = props
+        return (
+          <label>
+            {label}:
+            <input
+              type="text"
+              style={{ margin: 10 }}
+              value={value}
+              onChange={(event) => {
+                console.log(event)
+                setValue(event?.target?.value || "")
+                yoyo()
+              }}
+            />
+            <br />
+          </label>
+        )
+      }
+
+      /**
+       * Main component.
+       */
+      function Main(props) {
+        // state
+        const [subject, setSubject] = React.useState("S")
+        const [positiveVerb, setPositiveVerb] = React.useState("are")
+        const [negativeVerb, setNegativeVerb] = React.useState("are not")
+        const [predicate, setPredicate] = React.useState("P")
+        const [statementType, setStatementType] = React.useState("A")
+        const [statementValue, setStatementValue] = React.useState(true)
+
+        const AStatement = `All ${subject} ${positiveVerb} ${predicate}`
+        const EStatement = `No ${subject} ${positiveVerb} ${predicate}`
+        const IStatement = `Some ${subject} ${positiveVerb} ${predicate}`
+        const OStatement = `Some ${subject} ${negativeVerb} ${predicate}`
+
+        // render
+        return (
+          <div>
+            <Input label="Subject" value={subject} setValue={setSubject} />
+            <Input
+              label="Positive Verb"
+              value={positiveVerb}
+              setValue={setPositiveVerb}
+            />
+            <Input
+              label="Negative Verb"
+              value={negativeVerb}
+              setValue={setNegativeVerb}
+            />
+            <Input
+              label="Predicate"
+              value={predicate}
+              setValue={setPredicate}
+            />
+            <Input
+              label="Statement Type (A, E, I or O)"
+              value={statementType}
+              setValue={setStatementType}
+            />
+            <Input
+              label="Statement Value (true or false)"
+              value={statementValue}
+              setValue={setStatementValue}
+            />
+            <p>{EStatement}</p>
+            <div style={{ display: "flex", width: 400 }}>
+              <div
+                style={{
+                  flex: 1,
+                  backgroundColor: "black",
+                  color: "white",
+                  textAlign: "right",
+                }}
+              >
+                {AStatement}
+              </div>
+              <div style={{ flex: 1, backgroundColor: "orange" }}></div>
+              <div style={{ flex: 1, backgroundColor: "green" }}>
+                {EStatement}
+              </div>
+            </div>
+            <div style={{ display: "flex", width: 400 }}>
+              <div style={{ flex: 1 }}></div>
+              <div style={{ flex: 1 }}>
+                <div
+                  style={{
+                    height: 100,
+                    backgroundColor: "white",
+                    borderStyle: "solid",
+                    borderWidth: "2px",
+                  }}
+                ></div>
+              </div>
+              <div style={{ flex: 1 }}></div>
+            </div>
+            <div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+
+            <p>{IStatement}</p>
+            <p>{OStatement}</p>
+          </div>
+        )
+      }
+
+      /**
+       * Render Main component with ReactDOM.
+       * -----------------------------------------------------------------------
+       */
+      ReactDOM.render(<Main />, document.getElementById("root"))
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>
