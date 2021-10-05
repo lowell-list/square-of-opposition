@@ -33,7 +33,6 @@
               onChange={(event) => {
                 console.log(event)
                 setValue(event?.target?.value || "")
-                yoyo()
               }}
             />
             <br />
@@ -51,12 +50,29 @@
         const [negativeVerb, setNegativeVerb] = React.useState("are not")
         const [predicate, setPredicate] = React.useState("P")
         const [statementType, setStatementType] = React.useState("A")
-        const [statementValue, setStatementValue] = React.useState(true)
+        const [statementValue, setStatementValue] = React.useState("true")
 
+        // define statement sentences
         const AStatement = `All ${subject} ${positiveVerb} ${predicate}`
         const EStatement = `No ${subject} ${positiveVerb} ${predicate}`
         const IStatement = `Some ${subject} ${positiveVerb} ${predicate}`
         const OStatement = `Some ${subject} ${negativeVerb} ${predicate}`
+
+        // calculate statement values
+        const getValue = (letter) => {
+          if (letter === statementType) {
+            if (statementValue === "true") return true
+            else if (statementValue === "false") return false
+          }
+          return "unknown"
+        }
+        const values = {
+          A: getValue("A"),
+          E: getValue("E"),
+          I: getValue("I"),
+          O: getValue("O"),
+        }
+        const computedValues = solveStatementOnePass(values)
 
         // render
         return (
@@ -97,11 +113,11 @@
                   textAlign: "right",
                 }}
               >
-                {AStatement}
+                {AStatement}: {String(computedValues.A)}
               </div>
               <div style={{ flex: 1, backgroundColor: "orange" }}></div>
               <div style={{ flex: 1, backgroundColor: "green" }}>
-                {EStatement}
+                {EStatement}: {String(computedValues.E)}
               </div>
             </div>
             <div style={{ display: "flex", width: 400 }}>
@@ -124,8 +140,12 @@
               <div></div>
             </div>
 
-            <p>{IStatement}</p>
-            <p>{OStatement}</p>
+            <p>
+              {IStatement}: {String(computedValues.I)}
+            </p>
+            <p>
+              {OStatement}: {String(computedValues.O)}
+            </p>
           </div>
         )
       }

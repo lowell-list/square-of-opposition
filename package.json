@@ -8,8 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "go": "npx ts-node index.ts"
+    "tsc": "npx tsc square-of-opposition.ts"
   },
   "author": "",
   "license": "ISC",
