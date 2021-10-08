@@ -147,13 +147,30 @@
                   borderStyle: "solid",
                   borderWidth: "2px",
                   flexDirection: "column",
+                  padding: 5,
+                  fontSize: 30,
                 }}
               >
-                <div style={{ flex: 1, backgroundColor: "aliceblue" }}>
-                  top column
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <div style={{ flex: 1 }}>A</div>
+                  <div style={{ flex: 1, textAlign: "right" }}>E</div>
                 </div>
-                <div style={{ flex: 1, backgroundColor: "yellow" }}>
-                  bottom column
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "end",
+                  }}
+                >
+                  <div style={{ flex: 1 }}>I</div>
+                  <div style={{ flex: 1, textAlign: "right" }}>O</div>
                 </div>
               </div>
               <div style={{ flex: 1 }}></div>
