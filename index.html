@@ -176,17 +176,17 @@
               <div style={{ flex: 1 }}></div>
             </div>
             {/* Square: Bottom Row */}
-            <div>
-              <div></div>
-              <div></div>
-              <div></div>
+            <div style={{ display: "flex", width: totalWidth }}>
+              <div style={{ flex: 1, textAlign: "right" }}>
+                <StatementValue value={computedValues.I} />
+                {IStatement}
+              </div>
+              <div style={{ flex: 1 }}></div>
+              <div style={{ flex: 1 }}>
+                <StatementValue value={computedValues.O} />
+                {OStatement}
+              </div>
             </div>
-            <p>
-              {IStatement}: {String(computedValues.I)}
-            </p>
-            <p>
-              {OStatement}: {String(computedValues.O)}
-            </p>
           </div>
         )
       }
