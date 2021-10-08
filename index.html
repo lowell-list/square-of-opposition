@@ -103,7 +103,6 @@
               value={statementValue}
               setValue={setStatementValue}
             />
-            <p>{EStatement}</p>
             <div style={{ display: "flex", width: 400 }}>
               <div
                 style={{
@@ -115,22 +114,30 @@
               >
                 {AStatement}: {String(computedValues.A)}
               </div>
-              <div style={{ flex: 1, backgroundColor: "orange" }}></div>
+              <div style={{ flex: 1, backgroundColor: "white" }}></div>
               <div style={{ flex: 1, backgroundColor: "green" }}>
                 {EStatement}: {String(computedValues.E)}
               </div>
             </div>
             <div style={{ display: "flex", width: 400 }}>
               <div style={{ flex: 1 }}></div>
-              <div style={{ flex: 1 }}>
-                <div
-                  style={{
-                    height: 100,
-                    backgroundColor: "white",
-                    borderStyle: "solid",
-                    borderWidth: "2px",
-                  }}
-                ></div>
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  height: 133,
+                  backgroundColor: "white",
+                  borderStyle: "solid",
+                  borderWidth: "2px",
+                  flexDirection: "column",
+                }}
+              >
+                <div style={{ flex: 1, backgroundColor: "aliceblue" }}>
+                  top column
+                </div>
+                <div style={{ flex: 1, backgroundColor: "yellow" }}>
+                  bottom column
+                </div>
               </div>
               <div style={{ flex: 1 }}></div>
             </div>
