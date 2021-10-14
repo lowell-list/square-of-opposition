@@ -33,20 +33,7 @@
         const OStatement = `Some ${subject} ${negativeVerb} ${predicate}`
 
         // calculate statement values
-        const getValue = (letter) => {
-          if (letter === statementType) {
-            if (statementValue === "true") return true
-            else if (statementValue === "false") return false
-          }
-          return "unknown"
-        }
-        const values = {
-          A: getValue("A"),
-          E: getValue("E"),
-          I: getValue("I"),
-          O: getValue("O"),
-        }
-        const computedValues = solveStatementOnePass(values)
+        const values = computeValues({ statementType, statementValue })
 
         // display options
         const totalWidth = 500
@@ -88,12 +75,12 @@
             <div style={{ display: "flex", marginTop: 30, width: totalWidth }}>
               <div style={{ flex: 1, textAlign: "right" }}>
                 {AStatement}
-                <StatementValue value={computedValues.A} />
+                <StatementValue value={values.A} />
               </div>
               <div style={{ flex: 1 }}></div>
               <div style={{ flex: 1 }}>
                 {EStatement}
-                <StatementValue value={computedValues.E} />
+                <StatementValue value={values.E} />
               </div>
             </div>
 
@@ -142,12 +129,12 @@
             {/* Bottom Row */}
             <div style={{ display: "flex", width: totalWidth }}>
               <div style={{ flex: 1, textAlign: "right" }}>
-                <StatementValue value={computedValues.I} />
+                <StatementValue value={values.I} />
                 {IStatement}
               </div>
               <div style={{ flex: 1 }}></div>
               <div style={{ flex: 1 }}>
-                <StatementValue value={computedValues.O} />
+                <StatementValue value={values.O} />
                 {OStatement}
               </div>
             </div>
@@ -190,6 +177,30 @@
         const displayChar =
           value === true ? "✅" : value === false ? "❌" : "❓"
         return <div>{displayChar}</div>
+      }
+
+      /**
+       * Utility functions.
+       * -----------------------------------------------------------------------
+       */
+      function computeValues(options) {
+        // get known statement type and value
+        const { statementType, statementValue } = options
+        // helper function for type conversion
+        const getValue = (letter) => {
+          if (letter === statementType) {
+            if (statementValue === "true") return true
+            else if (statementValue === "false") return false
+          }
+          return "unknown"
+        }
+        // solve!
+        return solveStatementOnePass({
+          A: getValue("A"),
+          E: getValue("E"),
+          I: getValue("I"),
+          O: getValue("O"),
+        })
       }
 
       /**
