@@ -14,44 +14,8 @@
     <div id="root"></div>
     <script type="text/babel">
       /**
-       * React Components.
+       * Main Component.
        * -----------------------------------------------------------------------
-       */
-
-      /**
-       * Custom Input component.
-       */
-      const Input = (props) => {
-        const { label, value, setValue } = props
-        return (
-          <label>
-            {label}:
-            <input
-              type="text"
-              style={{ margin: 10 }}
-              value={value}
-              onChange={(event) => {
-                console.log(event)
-                setValue(event?.target?.value || "")
-              }}
-            />
-            <br />
-          </label>
-        )
-      }
-
-      /**
-       * Display Statment value.
-       */
-      const StatementValue = (props) => {
-        const { value } = props
-        const displayChar =
-          value === true ? "✅" : value === false ? "❌" : "❓"
-        return <div>{displayChar}</div>
-      }
-
-      /**
-       * Main component.
        */
       function Main(props) {
         // state
@@ -84,19 +48,15 @@
         }
         const computedValues = solveStatementOnePass(values)
 
-        // display
+        // display options
         const totalWidth = 500
 
         /**
-         * TODO:
-         * [ ] bottom labels
-         * [ ] inside square A, E, I, O labels
+         * Render!
          */
-
-        // render
         return (
           <div>
-            {/* Inputs */}
+            {/** Inputs */}
             <Input label="Subject" value={subject} setValue={setSubject} />
             <Input
               label="Positive Verb"
@@ -123,7 +83,8 @@
               value={statementValue}
               setValue={setStatementValue}
             />
-            {/* Square: Top Row */}
+
+            {/* Top Row */}
             <div style={{ display: "flex", marginTop: 30, width: totalWidth }}>
               <div style={{ flex: 1, textAlign: "right" }}>
                 {AStatement}
@@ -135,9 +96,11 @@
                 <StatementValue value={computedValues.E} />
               </div>
             </div>
-            {/* Square: Middle Row */}
+
+            {/* Middle Row */}
             <div style={{ display: "flex", width: totalWidth }}>
               <div style={{ flex: 1 }}></div>
+              {/* The Square! */}
               <div
                 style={{
                   flex: 1,
@@ -175,7 +138,8 @@
               </div>
               <div style={{ flex: 1 }}></div>
             </div>
-            {/* Square: Bottom Row */}
+
+            {/* Bottom Row */}
             <div style={{ display: "flex", width: totalWidth }}>
               <div style={{ flex: 1, textAlign: "right" }}>
                 <StatementValue value={computedValues.I} />
@@ -189,6 +153,43 @@
             </div>
           </div>
         )
+      }
+
+      /**
+       * Sub Components.
+       * -----------------------------------------------------------------------
+       */
+
+      /**
+       * Custom Input component.
+       */
+      const Input = (props) => {
+        const { label, value, setValue } = props
+        return (
+          <label>
+            {label}:
+            <input
+              type="text"
+              style={{ margin: 10 }}
+              value={value}
+              onChange={(event) => {
+                console.log(event)
+                setValue(event?.target?.value || "")
+              }}
+            />
+            <br />
+          </label>
+        )
+      }
+
+      /**
+       * Display Statment value.
+       */
+      const StatementValue = (props) => {
+        const { value } = props
+        const displayChar =
+          value === true ? "✅" : value === false ? "❌" : "❓"
+        return <div>{displayChar}</div>
       }
 
       /**
